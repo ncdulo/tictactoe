@@ -29,11 +29,3 @@ void GameBoard::drawRow() {
 void GameBoard::drawMiddleRow() {
 	cout << "  |   |   |   |" << endl;
 }
-
-// This function is here only for testing
-// Will be moved into a Game class
-int main() {
-	GameBoard gb;
-	gb.drawEmpty();
-	return 0;
-}
