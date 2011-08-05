@@ -9,4 +9,7 @@ class Game {
 	private:
 		bool quit;
 		GameBoard gameBoard;
+		
+		void printMenu();
+		void printInstructions();
 };
