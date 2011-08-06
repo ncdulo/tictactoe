@@ -109,6 +109,13 @@ void Game::playerTurn() {
 }
 
 void Game::computerTurn() {
+	/* Basic AI to be implemented:
+	 * Computer will first try center - 2,2
+	 * Next we will go above player - playerY-1,playerX
+	 * Next we try below - playerY+1,playerX
+	 * Next we try the left - playerY,playerX-1
+	 * Finally we go for whats right - playerY,playerX+1
+	 */
 	cout << "computer" << endl;
 }
 
