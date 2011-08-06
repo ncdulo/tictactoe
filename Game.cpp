@@ -13,6 +13,8 @@ void Game::gameLoop() {
 		winner = ' ';
 		numberTurns = 0;
 		
+		gameBoard.resetBoard();
+		
 		do {
 			gameBoard.draw(true);
 			

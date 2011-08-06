@@ -52,3 +52,12 @@ bool GameBoard::markBoard(int y, int x, char mark) {
 char GameBoard::getMark(int y, int x) {
 	return boardState[y][x];
 }
+
+// Resets the board to an empty state
+void GameBoard::resetBoard() {
+	for(int y = 0; y < 3; y++) {
+		for(int x = 0; x < 3; x++) {
+			boardState[y][x] = ' ';
+		}
+	}
+}
