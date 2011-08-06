@@ -13,14 +13,23 @@ void Game::gameLoop() {
 		
 		printInstructions();
 		
-		playerSelect();
+		bool playerFirst = playerSelect();
 		
 		do {
-			// Draw board
-			// Get player move
-			// Check for win
-			// Computer moves
-			// Check for win
+			// Need to draw the board here too!
+			
+			if(playerFirst) {
+				playerTurn();
+				if(checkWin())
+					continue;
+				computerTurn();
+			} else {
+				computerTurn();
+				if(checkWin());
+					continue;
+				playerTurn();
+			}
+			
 		} while(!gameOver);
 		
 		// Ask to play again
@@ -58,7 +67,11 @@ void Game::printInstructions() {
 	
 }
 
-void Game::playerSelect() {
+void Game::printSeperator() {
+	cout << "- - - - - - - - - - - - - - - - - - - -" << endl; 
+}
+
+bool Game::playerSelect() {
 	char input;		// Temporary storage for user input
 	bool done = false;
 	
@@ -69,18 +82,30 @@ void Game::playerSelect() {
 		if((input == 'y') || (input == 'n')) 
 			done = true;
 	} while(!done);
-		
+	
+	// We return true if the player is first, false otherwise	
 	if(input == 'y') {
 		player = 'x';
 		computer = 'o';
+		return true;
 	} else {
 		player = 'o';
 		computer = 'x';
+		return false;
 	}
 }
 
-void Game::printSeperator() {
-	cout << "- - - - - - - - - - - - - - - - - - - -" << endl; 
+void Game::playerTurn() {
+	cout << "player" << endl;
+}
+
+void Game::computerTurn() {
+	cout << "computer" << endl;
+}
+
+bool Game::checkWin() {
+	gameOver = true;
+	return true;
 }
 
 int main() {
