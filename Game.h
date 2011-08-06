@@ -21,7 +21,7 @@ class Game {
 		void playerTurn();
 		void computerTurn();
 		
-		bool checkWin();			// True if win, false otherwise
+		char checkWin();			// 'd' - draw, 'c' - continue, 'x' or 'o' for win
 		
 	protected:
 		void printSeperator();		// A simple horizontal seperator

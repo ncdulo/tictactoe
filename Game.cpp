@@ -19,12 +19,12 @@ void Game::gameLoop() {
 			
 			if(playerFirst) {
 				playerTurn();
-				if(checkWin())
+				if(checkWin() == 'c')
 					continue;
 				computerTurn();
 			} else {
 				computerTurn();
-				if(checkWin());
+				if(checkWin() == 'c');
 					continue;
 				playerTurn();
 			}
@@ -115,14 +115,49 @@ void Game::computerTurn() {
 	 * Next we try the left - playerY,playerX-1
 	 * Finally we go for whats right - playerY,playerX+1
 	 */
-	cout << "computer" << endl;
+	cout << "computer turn" << endl;
 }
 
-bool Game::checkWin() {
+
+// Checks the board for any win/lose conditions
+// returns 'c' - continue, 'd' - draw
+// or if winner then returns 'x' or 'o'
+char Game::checkWin() {
 	if(numberTurns > 9) {
+		// Draw, end game
 		gameOver = true;
 		isDraw = true;
 		return true;
+	} else {
+		// Game in progress, check for winner
+		
+		// Horizontal Win Checks
+		for(int y = 0; y < 3; y++) {
+			if((gameBoard.getMark(y,0) != ' ') && (gameBoard.getMark(y,0) == gameBoard.getMark(y,1) && (gameBoard.getMark(y,0) == gameBoard.getMark(y,2)))) {
+				gameOver = true;
+				isDraw = false;
+				return gameBoard.getMark(y,0);
+			}
+		}
+		// Vertical Win Checks
+		for(int x = 0; x < 3; x++) {
+			if((gameBoard.getMark(0,x) != ' ') && (gameBoard.getMark(0,x) == gameBoard.getMark(1,x) && (gameBoard.getMark(0,x) == gameBoard.getMark(2,x)))) {
+				gameOver = true;
+				isDraw = false;
+				return gameBoard.getMark(0,x);
+			}
+		}
+		// Diagonal Win Checks
+		if((gameBoard.getMark(0,0) != ' ') && (gameBoard.getMark(0,0) == gameBoard.getMark(1,1) && (gameBoard.getMark(0,0) == gameBoard.getMark(2,2)))) {
+			gameOver = true;
+			isDraw = false;
+			return gameBoard.getMark(0,0);
+		}
+		if((gameBoard.getMark(0,2) != ' ') && (gameBoard.getMark(0,0) == gameBoard.getMark(1,1) && (gameBoard.getMark(0,2) == gameBoard.getMark(2,0)))) {
+			gameOver = true;
+			isDraw = false;
+			return gameBoard.getMark(0,2);
+		}
 	}
 	
 	return false;
