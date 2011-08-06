@@ -5,10 +5,10 @@ using namespace std;
 
 class GameBoard {
 	public:
-		void drawEmpty();
-		void drawWithMarks(vector<int> X, vector<int> O);
+		GameBoard();
+		void draw(bool withMarks);
 		
 	private:
+		char boardState[3][3];	// Array of marks on the board. [Vert][Horiz]
 		void drawRow();
-		void drawMiddleRow();
 };

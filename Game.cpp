@@ -16,7 +16,7 @@ void Game::gameLoop() {
 		bool playerFirst = playerSelect();
 		
 		do {
-			// Need to draw the board here too!
+			gameBoard.draw(true);
 			
 			if(playerFirst) {
 				playerTurn();
