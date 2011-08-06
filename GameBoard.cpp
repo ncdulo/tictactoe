@@ -15,13 +15,14 @@ GameBoard::GameBoard() {
 
 // Draw an empty row on the game board
 void GameBoard::draw(bool withMarks) {
+	cout << "     1   2   3" << endl;
 	drawRow();		// Draw the top row now, everything else loops
 	for(int y = 0; y < 3; y++) {
 		if(!withMarks) {
-			cout << "  |   |   |   |" << endl;
+			cout << "   |   |   |   |" << endl;
 		} else {
 			//for(int x = 0; x < 3; x++)
-			cout << "  | " << boardState[y][0] << " | " << boardState[y][1] << " | " << boardState[y][2] << " |" << endl;
+			cout << " " << y + 1 << " | " << boardState[y][0] << " | " << boardState[y][1] << " | " << boardState[y][2] << " |" << endl;
 		}
 		drawRow();
 	}
@@ -29,6 +30,6 @@ void GameBoard::draw(bool withMarks) {
 
 // Draw a single, solid row on the board
 void GameBoard::drawRow() {
-	cout << "  +---+---+---+" << endl;
+	cout << "   +---+---+---+" << endl;
 	
 }
