@@ -47,3 +47,8 @@ bool GameBoard::markBoard(int y, int x, char mark) {
 		return false;
 	}
 }
+
+// Return the char from a specific spot on the board
+char GameBoard::getMark(int y, int x) {
+	return boardState[y][x];
+}
