@@ -1,5 +1,6 @@
 // Main game class
 #include "Game.h"
+#include "config.h"
 #include <iostream>
 using namespace std;
 
@@ -45,10 +46,9 @@ void Game::resetGame() {
 
 void Game::printMenu() {
 	cout << endl;
-	cout << "Welcome to TicTacToe!" << endl;
+	cout << "Welcome to "  << PACKAGE_STRING << "!" << endl;
 	printSeperator();
-	cout << "Programmed by Nick Cardullo" << endl;
-	cout << "     Email:  <nick.cardullo@gmail.com>" << endl;
+	cout << "Send bug reports to " << PACKAGE_BUGREPORT << endl;
 	printSeperator();
 }
 
