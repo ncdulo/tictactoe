@@ -13,6 +13,8 @@ void Game::gameLoop() {
 		
 		printInstructions();
 		
+		playerSelect();
+		
 		quit = true;
 		
 		/* Begin actual game in another do-while nested here
@@ -24,32 +26,58 @@ void Game::gameLoop() {
 void Game::printMenu() {
 	cout << endl;
 	cout << "Welcome to TicTacToe!" << endl;
-	cout << "- - - - - - - - - - - - - - - - - - - -" << endl;
+	printSeperator();
 	cout << "Programmed by Nick Cardullo" << endl;
 	cout << "     Email:  <nick.cardullo@gmail.com>" << endl;
-	cout << "- - - - - - - - - - - - - - - - - - - -" << endl;
+	printSeperator();
 }
 
 void Game::printInstructions() {
 	cout << "Instructions:" <<endl;
-	cout << "- - - - - - - - - - - - - - - - - - - -" << endl;
+	printSeperator();
 	cout << " Once you begin, you will see a numbered" << endl;
 	cout << " grid. On your turn enter the number of" << endl;
 	cout << " the square you would like to mark and" << endl;
 	cout << " then press enter. Repeat until there are" << endl;
 	cout << " no more empty squares left, or until a" << endl;
 	cout << " winner is found!" << endl;
-	cout << "- - - - - - - - - - - - - - - - - - - -" << endl;
+	printSeperator();
 	cout << "Winning Moves:" << endl;
-	cout << "- - - - - - - - - - - - - - - - - - - -" << endl;
+	printSeperator();
 	cout << " You may win by forming a line of three" << endl;
 	cout << " of your mark either horizantally, vertically" << endl;
 	cout << " or diagonally." << endl;
-	cout << "- - - - - - - - - - - - - - - - - - - -" << endl;
+	printSeperator();
 	cout << "               GOOD LUCK!" << endl;                         
-	cout << "- - - - - - - - - - - - - - - - - - - -" << endl; 
+	printSeperator();
 	
 }
+
+void Game::playerSelect() {
+	char input;		// Temporary storage for user input
+	bool done = false;
+	
+	do {
+		cout << "Will you go first?" << endl;
+		cin >> input;
+
+		if((input == 'y') || (input == 'n')) 
+			done = true;
+	} while(!done);
+		
+	if(input == 'y') {
+		player = 'x';
+		computer = 'o';
+	} else {
+		player = 'o';
+		computer = 'x';
+	}
+}
+
+void Game::printSeperator() {
+	cout << "- - - - - - - - - - - - - - - - - - - -" << endl; 
+}
+
 int main() {
 	Game game;
 	
