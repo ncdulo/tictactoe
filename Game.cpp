@@ -7,18 +7,13 @@ void Game::gameLoop() {
 	printMenu();
 	printInstructions();
 	do {
-		bool playerFirst = playerSelect();
-		isDraw = false;
-		gameOver = false;
-		winner = ' ';
-		numberTurns = 0;
-		
+		resetGame();
 		gameBoard.resetBoard();
 		
 		do {
 			gameBoard.draw(true);
 			
-			if(playerFirst) {
+			if(player == 'x') {
 				playerTurn();
 				if(checkWin())
 					continue;
@@ -37,6 +32,15 @@ void Game::gameLoop() {
 		else
 			quit = true;
 	} while (!quit);
+}
+
+void Game::resetGame() {
+	isDraw = false;
+	gameOver = false;
+	winner = ' ';
+	numberTurns = 0;
+	
+	playerSelect();
 }
 
 void Game::printMenu() {

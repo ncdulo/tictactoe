@@ -20,6 +20,8 @@ class Game {
 		bool playerSelect();		// True if player goes first, false otherwise
 		bool askWinner();			// Print win message, return true to play again
 		
+		void resetGame();			// Initialize/Reset variables for a new game
+		
 		void playerTurn();
 		void computerTurn();
 		
