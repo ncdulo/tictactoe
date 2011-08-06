@@ -3,15 +3,16 @@
 
 class Game {
 	public:
-		Game();
 		void gameLoop();
 		
 	private:
 		bool 		quit;
 		bool		gameOver;		// == true when checkWin() returns true
+		bool		isDraw;			// == true when the game is draw, false otherwise
 		GameBoard 	gameBoard;		// Stores the board for the game
 		char		player;			// Each player represented by
 		char		computer;		// a char of either 'x' or 'o'.
+		int			numberTurns;	// To track when we get a draw
 		
 		void printMenu();
 		void printInstructions();

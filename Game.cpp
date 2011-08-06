@@ -3,10 +3,6 @@
 #include <iostream>
 using namespace std;
 
-Game::Game() {
-	Game::quit = false;
-}
-
 void Game::gameLoop() {
 	do {
 		printMenu();
@@ -14,6 +10,9 @@ void Game::gameLoop() {
 		printInstructions();
 		
 		bool playerFirst = playerSelect();
+		isDraw = false;
+		gameOver = false;
+		numberTurns = 0;
 		
 		do {
 			gameBoard.draw(true);
@@ -29,7 +28,7 @@ void Game::gameLoop() {
 					continue;
 				playerTurn();
 			}
-			
+			numberTurns++;
 		} while(!gameOver);
 		
 		// Ask to play again
@@ -120,8 +119,13 @@ void Game::computerTurn() {
 }
 
 bool Game::checkWin() {
-	gameOver = true;
-	return true;
+	if(numberTurns > 9) {
+		gameOver = true;
+		isDraw = true;
+		return true;
+	}
+	
+	return false;
 }
 
 int main() {
