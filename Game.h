@@ -12,16 +12,18 @@ class Game {
 		GameBoard 	gameBoard;		// Stores the board for the game
 		char		player;			// Each player represented by
 		char		computer;		// a char of either 'x' or 'o'.
+		char		winner;			// an 'x' or 'o' to represent the winner
 		int			numberTurns;	// To track when we get a draw
 		
 		void printMenu();
 		void printInstructions();
 		bool playerSelect();		// True if player goes first, false otherwise
+		bool askWinner();			// Print win message, return true to play again
 		
 		void playerTurn();
 		void computerTurn();
 		
-		char checkWin();			// 'd' - draw, 'c' - continue, 'x' or 'o' for win
+		bool checkWin();			// True if winner/draw, false otherwise
 		
 	protected:
 		void printSeperator();		// A simple horizontal seperator

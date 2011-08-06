@@ -4,14 +4,13 @@
 using namespace std;
 
 void Game::gameLoop() {
+	printMenu();
+	printInstructions();
 	do {
-		printMenu();
-		
-		printInstructions();
-		
 		bool playerFirst = playerSelect();
 		isDraw = false;
 		gameOver = false;
+		winner = ' ';
 		numberTurns = 0;
 		
 		do {
@@ -19,20 +18,22 @@ void Game::gameLoop() {
 			
 			if(playerFirst) {
 				playerTurn();
-				if(checkWin() == 'c')
+				if(checkWin())
 					continue;
 				computerTurn();
 			} else {
 				computerTurn();
-				if(checkWin() == 'c');
+				if(checkWin());
 					continue;
 				playerTurn();
 			}
 			numberTurns++;
 		} while(!gameOver);
 		
-		// Ask to play again
-		quit = true;
+		if(askWinner())
+			quit = false;
+		else
+			quit = true;
 	} while (!quit);
 }
 
@@ -94,6 +95,31 @@ bool Game::playerSelect() {
 	}
 }
 
+bool Game::askWinner() {
+	// Print a win message
+	printSeperator();
+	if(isDraw)
+		cout << "             Y U NO WIN!?" << endl;
+	else
+		cout << "          A WINNER IS YOU!" << endl;
+	printSeperator();
+	
+	
+	// Figure out if we are going to play again
+	bool done = false;
+	char input;
+	do {
+		cout << "Would you like to play again?" << endl;
+		cin >> input;
+		if(input == 'y')
+			return true;
+		else if(input == 'n')
+			return false;
+	} while (!done);
+	
+	return false;
+}
+
 void Game::playerTurn() {
 	int y, x;
 	bool done = false;
@@ -120,13 +146,13 @@ void Game::computerTurn() {
 
 
 // Checks the board for any win/lose conditions
-// returns 'c' - continue, 'd' - draw
-// or if winner then returns 'x' or 'o'
-char Game::checkWin() {
+// True if there is a winner or draw, false otherwise
+bool Game::checkWin() {
 	if(numberTurns > 9) {
 		// Draw, end game
 		gameOver = true;
 		isDraw = true;
+		winner = ' ';
 		return true;
 	} else {
 		// Game in progress, check for winner
@@ -136,7 +162,8 @@ char Game::checkWin() {
 			if((gameBoard.getMark(y,0) != ' ') && (gameBoard.getMark(y,0) == gameBoard.getMark(y,1) && (gameBoard.getMark(y,0) == gameBoard.getMark(y,2)))) {
 				gameOver = true;
 				isDraw = false;
-				return gameBoard.getMark(y,0);
+				winner = gameBoard.getMark(y,0);
+				return true;
 			}
 		}
 		// Vertical Win Checks
@@ -144,19 +171,22 @@ char Game::checkWin() {
 			if((gameBoard.getMark(0,x) != ' ') && (gameBoard.getMark(0,x) == gameBoard.getMark(1,x) && (gameBoard.getMark(0,x) == gameBoard.getMark(2,x)))) {
 				gameOver = true;
 				isDraw = false;
-				return gameBoard.getMark(0,x);
+				winner = gameBoard.getMark(0,x);
+				return true;
 			}
 		}
 		// Diagonal Win Checks
 		if((gameBoard.getMark(0,0) != ' ') && (gameBoard.getMark(0,0) == gameBoard.getMark(1,1) && (gameBoard.getMark(0,0) == gameBoard.getMark(2,2)))) {
 			gameOver = true;
 			isDraw = false;
-			return gameBoard.getMark(0,0);
+			winner = gameBoard.getMark(0,0);
+			return true;
 		}
 		if((gameBoard.getMark(0,2) != ' ') && (gameBoard.getMark(0,0) == gameBoard.getMark(1,1) && (gameBoard.getMark(0,2) == gameBoard.getMark(2,0)))) {
 			gameOver = true;
 			isDraw = false;
-			return gameBoard.getMark(0,2);
+			winner = gameBoard.getMark(0,2);
+			return true;
 		}
 	}
 	
