@@ -96,7 +96,16 @@ bool Game::playerSelect() {
 }
 
 void Game::playerTurn() {
-	cout << "player" << endl;
+	int y, x;
+	bool done = false;
+	
+	do {
+		cout << "Player enter the coordinates for your move, seperated by a space, vertical first" << endl;
+		cin >> y >> x;
+		
+		if(gameBoard.markBoard(y, x, player))
+			done = true;
+	} while(!done);
 }
 
 void Game::computerTurn() {
