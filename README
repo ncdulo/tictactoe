@@ -1,1 +1,7 @@
 TicTacToe is a simple re-write of the classic game in C++.
+
+To Build & Install:
+  $ ./configure
+  $ make
+  $ sudo make install
+
