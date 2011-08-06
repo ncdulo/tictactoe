@@ -15,11 +15,16 @@ void Game::gameLoop() {
 		
 		playerSelect();
 		
-		quit = true;
+		do {
+			// Draw board
+			// Get player move
+			// Check for win
+			// Computer moves
+			// Check for win
+		} while(!gameOver);
 		
-		/* Begin actual game in another do-while nested here
-		 * this is so we can break from the game and return
-		 * to the menu without quitting */
+		// Ask to play again
+		quit = true;
 	} while (!quit);
 }
 
