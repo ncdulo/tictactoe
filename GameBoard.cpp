@@ -33,3 +33,17 @@ void GameBoard::drawRow() {
 	cout << "   +---+---+---+" << endl;
 	
 }
+
+// Place a mark at y, x. Returns true if success, false otherwise
+bool GameBoard::markBoard(int y, int x, char mark) {
+	// Remember, arrays begin at 0 so we subtract 1 to even things out
+	y--;
+	x--;
+	
+	if(y < 3 && x < 3) {
+		boardState[y][x] = mark;
+		return true;
+	} else {
+		return false;
+	}
+}
