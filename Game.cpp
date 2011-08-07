@@ -16,13 +16,9 @@ void Game::gameLoop() {
 			
 			if(player == 'x') {
 				playerTurn();
-				if(checkWin())
-					continue;
 				computerTurn();
 			} else {
 				computerTurn();
-				if(checkWin());
-					continue;
 				playerTurn();
 			}
 			numberTurns++;
@@ -127,6 +123,9 @@ bool Game::askWinner() {
 }
 
 void Game::playerTurn() {
+	if(checkWin())
+		return;
+		
 	int y, x;
 	bool done = false;
 	
@@ -140,6 +139,8 @@ void Game::playerTurn() {
 }
 
 void Game::computerTurn() {
+	if(checkWin())
+		return;
 	/* Basic AI to be implemented:
 	 * Computer will first try center - 2,2
 	 * Next we will go above player - playerY-1,playerX
