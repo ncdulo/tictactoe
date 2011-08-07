@@ -1,6 +1,8 @@
 // Main game class
 #include "Game.h"
 #include "config.h"
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
 using namespace std;
 
@@ -133,7 +135,7 @@ void Game::playerTurn() {
 		cout << "Player enter the coordinates for your move, seperated by a space, vertical first" << endl;
 		cin >> y >> x;
 		
-		if(gameBoard.markBoard(y, x, player))
+		if(gameBoard.markBoard(y-1, x-1, player))
 			done = true;
 	} while(!done);
 }
@@ -141,14 +143,18 @@ void Game::playerTurn() {
 void Game::computerTurn() {
 	if(checkWin())
 		return;
-	/* Basic AI to be implemented:
-	 * Computer will first try center - 2,2
-	 * Next we will go above player - playerY-1,playerX
-	 * Next we try below - playerY+1,playerX
-	 * Next we try the left - playerY,playerX-1
-	 * Finally we go for whats right - playerY,playerX+1
-	 */
-	cout << "computer turn" << endl;
+	// For now we use a dumb AI (randomly moves)
+	// until I can figure out a MiniMax implementation
+	srand((unsigned)time(0));
+	bool done = false;
+	do {
+		int y = rand()%3;
+		int x = rand()%3;
+		if(gameBoard.markBoard(y, x, computer))
+			done = true;
+			
+		//cout << y << " " << x << endl;
+	} while(!done);
 }
 
 
