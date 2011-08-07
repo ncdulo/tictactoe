@@ -1,6 +1,5 @@
 // GameBoard
 // This class will draw a TicTacToe board
-#include <vector>
 using namespace std;
 
 class GameBoard {
