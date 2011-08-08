@@ -14,16 +14,15 @@ void Game::gameLoop() {
 		gameBoard.resetBoard();
 		
 		do {
+			gameBoard.draw(true);
 			if(player == 'x') {
 				playerTurn();
-				gameBoard.draw(true);
 				computerTurn();
 			} else {
 				computerTurn();
 				gameBoard.draw(true);
 				playerTurn();
 			}
-			numberTurns++;
 		} while(!gameOver);
 		
 		if(askWinner())
@@ -104,8 +103,10 @@ bool Game::askWinner() {
 	printSeperator();
 	if(isDraw)
 		cout << "             Y U NO WIN!?" << endl;
-	else
+	else if(winner == player)
 		cout << "          A WINNER IS YOU!" << endl;
+	else
+		cout << "           COMPUTER WINS!" << endl;
 	printSeperator();
 	
 	
@@ -161,7 +162,7 @@ void Game::computerTurn() {
 // Checks the board for any win/lose conditions
 // True if there is a winner or draw, false otherwise
 bool Game::checkWin() {
-	if(numberTurns > 9) {
+	if(numberTurns >= 9) {
 		// Draw, end game
 		gameOver = true;
 		isDraw = true;
@@ -176,6 +177,7 @@ bool Game::checkWin() {
 				gameOver = true;
 				isDraw = false;
 				winner = gameBoard.getMark(y,0);
+				numberTurns++;
 				return true;
 			}
 		}
@@ -185,6 +187,7 @@ bool Game::checkWin() {
 				gameOver = true;
 				isDraw = false;
 				winner = gameBoard.getMark(0,x);
+				numberTurns++;
 				return true;
 			}
 		}
@@ -193,12 +196,14 @@ bool Game::checkWin() {
 			gameOver = true;
 			isDraw = false;
 			winner = gameBoard.getMark(0,0);
+			numberTurns++;
 			return true;
 		}
 		if((gameBoard.getMark(0,2) != ' ') && (gameBoard.getMark(0,0) == gameBoard.getMark(1,1) && (gameBoard.getMark(0,2) == gameBoard.getMark(2,0)))) {
 			gameOver = true;
 			isDraw = false;
 			winner = gameBoard.getMark(0,2);
+			numberTurns++;
 			return true;
 		}
 	}
