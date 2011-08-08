@@ -14,13 +14,13 @@ void Game::gameLoop() {
 		gameBoard.resetBoard();
 		
 		do {
-			gameBoard.draw(true);
-			
 			if(player == 'x') {
 				playerTurn();
+				gameBoard.draw(true);
 				computerTurn();
 			} else {
 				computerTurn();
+				gameBoard.draw(true);
 				playerTurn();
 			}
 			numberTurns++;
