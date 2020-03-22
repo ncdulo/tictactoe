@@ -5,3 +5,9 @@ To Build & Install:
   $ make
   $ sudo make install
 
+This project was never finished. Having sat idle for the last nine
+years, it's time to archive it. It's possible it will be forked, or
+ported over to another language in the future. But I don't forsee
+that happening with this particular code base. It was a fun project
+at the time, learned a lot, got me through a couple months out of
+work. Preserve the history.
